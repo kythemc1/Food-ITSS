@@ -1,0 +1,16 @@
+.serviceCard {
+    height: 520px;
+}
+
+figure {
+    min-height: 240px !important;
+}
+.serviceCard .badge{
+    background-color: #F40D15;
+    border: none;
+}
+.red-button{
+    background-color: #F40D15;
+    color: #ffffff;
+    border: none;
+}
