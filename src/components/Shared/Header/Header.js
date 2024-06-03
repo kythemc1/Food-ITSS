@@ -18,13 +18,13 @@ const Header = () => {
     }
 
     return (
-        <div className="navbar px-6 py-4 lg:px-20">
+        <div className="navbar px-6 py-4 lg:px-20 bgcolor-white">
             <div className="navbar-start">
-                <div className="dropdown">
-                    <label tabIndex={0} className="color-red lg:hidden">
+                <div className="dropdown ">
+                    <label tabIndex={0} className="color-black lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bgcolor-white color-black rounded-box w-52">
                         <NavLink to="/"><li>Home</li></NavLink>
                         <NavLink to="/services"><li>Services</li></NavLink>
                         {/* <NavLink to="/blog"><li>Blog</li></NavLink>
@@ -35,13 +35,13 @@ const Header = () => {
                 </div>
                 <div className='flex'>
                     <img className='ml-3 lg:ml-0' src={logo} alt="" />
-                    <NavLink className="btn btn-ghost color-red font-bold text-xl lg:text-2xl">Food Monster</NavLink>
+                    <NavLink className="btn btn-ghost color-black font-bold text-xl lg:text-2xl">Food Monster</NavLink>
                 </div>
             </div>
-            <div className="navbar-center hidden lg:flex">
+            <div className="navbar-center hidden lg:flex ">
                 <ul className="menu menu-horizontal p-0">
-                <NavLink to="/" className='mr-4 font-semibold'><li>Home</li></NavLink>
-                    <NavLink to="/services" className='mr-4 font-semibold'><li>Services</li></NavLink>
+                <NavLink to="/" className='mr-4 font-semibold color-black'><li>Home</li></NavLink>
+                    <NavLink to="/services" className='mr-4 font-semibold color-black '><li>Services</li></NavLink>
                     {/* <NavLink to="/blog" className='mr-4 font-semibold'><li>Blog</li></NavLink> */}
                 </ul>
             </div>
@@ -61,7 +61,7 @@ const Header = () => {
                         </NavLink>
                         </li>
                         <li onClick={handleSignOut}><NavLink className="bg-transparent text-black">Logout</NavLink></li>
-                    </ul> : <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    </ul> : <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bgcolor-white rounded-box w-52">
                         <li>
                         <NavLink to="/login" className="justify-between bg-transparent text-black">
                             Login
