@@ -98,7 +98,7 @@ const filteredReviews = reviews.filter((review) => {
                     </div>
                 </div>
             </div>
-            <div className='px-24 text-black bg-white'>
+            <div className='px-24 text-black bg-white pb-10'>
                 {amenities ? <div>
                     <div className='mb-2'>
                     <h2 className='font-semibold text-2xl mb-3 pt-8'>About the business</h2>
@@ -113,15 +113,13 @@ const filteredReviews = reviews.filter((review) => {
                         {details.history}    
                     </div>}
                 </div>
-                <div className="divider"></div>
                 </div> : <></>}
-                
-                
-                <div className='pb-8 bg-white'>
-                    <h2 className='font-semibold text-2xl pb-8 '>Reviews</h2>
+             </div>    
+                <div className='px-24 text-black bg-zinc-100 pb-4'>
+                    <h2 className='font-semibold text-2xl mb-3 pt-8 '>Reviews</h2>
                     <div>
                         {reviews ? reviews.map(review=> 
-                            <div key={review._id} className="card bg-zinc-100 shadow-xl my-4">
+                            <div key={review._id} className="card bg-white shadow-xl my-4">
                                 <div className="card-body">
                                     <>  
                                         <p className="card-title text-sm">
@@ -141,7 +139,6 @@ const filteredReviews = reviews.filter((review) => {
                             </div>) : <h4>No review yet</h4>  
                         }
                     </div>
-                </div>
                 {/* <div className="divider"></div>
                 <div className='mb-5'>
                     <h2 className='font-semibold text-2xl my-3'>Add Reviews</h2>
