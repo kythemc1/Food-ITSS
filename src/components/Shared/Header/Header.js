@@ -52,7 +52,7 @@ const Header = () => {
                         {user?.photoURL ? <img src={user.photoURL} alt="" /> :  <img src={avatar} alt="User" />}
                     </div>
                 </label>
-                {
+                {/* {
                     user?.uid ? 
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
@@ -69,7 +69,7 @@ const Header = () => {
                         </li>
                         <li><NavLink to="/signup" className="bg-transparent text-black">Sign Up</NavLink></li>
                     </ul>
-                }
+                } */}
                 
             </div>
             </div>
