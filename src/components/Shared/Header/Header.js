@@ -27,10 +27,10 @@ const Header = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <NavLink to="/"><li>Home</li></NavLink>
                         <NavLink to="/services"><li>Services</li></NavLink>
-                        <NavLink to="/blog"><li>Blog</li></NavLink>
+                        {/* <NavLink to="/blog"><li>Blog</li></NavLink>
                         <NavLink to="/contact"><li>Contact Us</li></NavLink>
                         <NavLink to="/login"><li>Login</li></NavLink>
-                        <NavLink to="/signup"><li>SignUp</li></NavLink>
+                        <NavLink to="/signup"><li>SignUp</li></NavLink> */}
                     </ul>
                 </div>
                 <div className='flex'>
@@ -42,7 +42,7 @@ const Header = () => {
                 <ul className="menu menu-horizontal p-0">
                 <NavLink to="/" className='mr-4 font-semibold'><li>Home</li></NavLink>
                     <NavLink to="/services" className='mr-4 font-semibold'><li>Services</li></NavLink>
-                    <NavLink to="/blog" className='mr-4 font-semibold'><li>Blog</li></NavLink>
+                    {/* <NavLink to="/blog" className='mr-4 font-semibold'><li>Blog</li></NavLink> */}
                 </ul>
             </div>
             <div className="navbar-end">
