@@ -6,11 +6,25 @@ figure {
     min-height: 240px !important;
 }
 .serviceCard .badge{
-    background-color: #F40D15;
+    background-color: #FF3A44;
+    color: #ffffff;
+    border: none;
+}
+.serviceCard .badge:hover{
+    background-color: #FF3A44;
+    opacity: 0.8;
     border: none;
 }
 .red-button{
-    background-color: #F40D15;
+    background-color: #FF3A44;
     color: #ffffff;
     border: none;
+}
+.red-button:hover {
+    background-color: #FF3A44;
+    opacity: 0.8;
+    cursor: pointer;
+}
+.star-color{
+    color: #FC8A06;
 }

@@ -12,27 +12,27 @@ const HomeServices = () => {
     const services = useLoaderData();
     
     return (
-        <div className='my-8 md:my-16 mx-8 md:mx-0'>
+        <div className=' bg-white p-4'>
             <div className='text-center my-12'>
-                <h2 className='text-4xl font-bold color-red'>Popular this month in your city</h2>
-                <p className='text-gray-500 pt-5'>The easiest way to your favorite food</p>
+                <h2 className='text-4xl font-bold text-black'>Suggestion for you</h2>
+                <p className='text-black-500 pt-5'>The easiest way to your favorite food</p>
             </div>
             <div className='mx-auto md:w-11/12'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                     {
                         services.map(service=><div key={service._id}>
-                            <div className="card serviceCard w-full md:mx-0 bg-base-100 shadow-xl">
+                            <div className="card serviceCard w-full md:mx-0 bg-zinc-100 shadow-xl">
                                 <PhotoProvider>
                                     <PhotoView key={service._id} src={service.image_url}>
                                         <figure><img src={service.image_url} alt="Shoes" /></figure>
                                     </PhotoView>
                                 </PhotoProvider>
-                                <div className="card-body">
+                                <div className="card-body text-black">
                                     <h2 className="card-title text-xl">
                                     {service?.title}
                                     </h2>
                                     <div className='flex items-center'>
-                                    <BsStarFill className='color-red mr-1'/><BsStarFill className='color-red mr-1'/><BsStarFill className='color-red mr-1'/><BsStarFill className='color-red mr-1'/><BsStarHalf className='color-red mr-2'/> {service?.rating?.number}
+                                    <BsStarFill className='star-color mr-1'/><BsStarFill className='star-color mr-1'/><BsStarFill className='star-color mr-1'/><BsStarFill className='star-color mr-1'/><BsStarHalf className='star-color mr-2'/> {service?.rating?.number}
                                     </div>
                                     <div className='flex items-center'>
                                         <span className='text-sm flex items-center mr-3'><RiEBike2Fill className='color-red mr-2'/>{service?.amenities?.delivery}</span>
