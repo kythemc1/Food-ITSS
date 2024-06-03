@@ -2,6 +2,10 @@
     place-items: start !important;
 }
 .hero-content .btn{
-    background-color: #F40D15;
-    border: #F40D15;
+    background-color: #FF3A44;
+    border: #FF3A44;
+    color: white;
+}
+.color-red{
+    color: #FF3A44;
 }
