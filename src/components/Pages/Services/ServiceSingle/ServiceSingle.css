@@ -1,3 +1,8 @@
 .hero-service{
     place-items: start;
 }
+.star-filter{
+    background-color: #FF3A44;
+    border: none;
+    border-radius: 5%;
+}
