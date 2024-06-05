@@ -5,14 +5,23 @@ import { IoCart } from "react-icons/io5";
 import { Link, useLoaderData } from "react-router-dom";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 
-const ServicesCollection = () => {
+const ServicesCollection = ({ search, setSearch }) => {
   const services = useLoaderData();
+
+  var newData = services.map((item) => {
+    const searchKey = `${item.food_drinks.map((fd) => fd.name).join(" ")}`;
+    return { ...item, searchKey };
+  });
+
+  if (search !== "") {
+    newData = newData.filter((item) => item.searchKey.includes(search));
+  }
 
   return (
     <div className="pb-16 pt-16 bg-white">
       <div className="mx-auto md:w-11/12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map((service) => (
+          {newData.map((service) => (
             <div key={service.id}>
               <div className="card serviceCard w-full md:mx-0 bg-zinc-100 shadow-xl">
                 <PhotoProvider>
