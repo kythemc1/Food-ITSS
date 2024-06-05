@@ -1,10 +1,18 @@
 import React from "react";
 import BgImage from "../../../../assets/images/u594-hero.jpg";
+import { useState } from "react";
 
 const ServicesBanner = ({ search, setSearch }) => {
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchQueryChange = (e) => {
+    setSearchQuery(e.target.value);
   };
+
+  const handleSubmit = () => {
+    setSearch(searchQuery);
+  };
+
   return (
     <div className="hero" style={{ backgroundImage: `url("${BgImage}")` }}>
       <div className="hero-overlay bg-opacity-70"></div>
@@ -20,10 +28,12 @@ const ServicesBanner = ({ search, setSearch }) => {
                 type="search"
                 placeholder="Search…"
                 className="input w-full text-black bg-white"
-                onChange={handleSearchChange}
+                onChange={handleSearchQueryChange}
               />
             </div>
-            <button className="btn w-3/12 color-red">Search</button>
+            <button className="btn w-3/12 color-red" onClick={handleSubmit}>
+              Search
+            </button>
           </div>
         </div>
       </div>
