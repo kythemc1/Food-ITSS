@@ -7,18 +7,18 @@ const Features = () => {
         <div className='grid grid-cols-1 md:grid-cols-3 py-12' style={{ backgroundColor: `rgb(244 244 245)`}}>
            <div className='text-center mx-auto mb-5 md:mb-0'>
                 <FaSearch className='mx-auto w-10 h-10 mb-4 color-red'/>
-                <h4 className='text-2xl font-bold mb-1 text-black'>Search</h4>
-                <p>Search Restaurants</p>
+                <h4 className='text-2xl font-bold mb-1 text-black'>Tìm kiếm</h4>
+                <p>Tìm kiếm nhà hàng</p>
             </div> 
            <div className='text-center mx-auto mb-5 md:mb-0'>
                 <FaCheckCircle className='mx-auto w-10 h-10 mb-4 color-red'/>
-                <h4 className='text-2xl font-bold mb-1 text-black'>Review</h4>
-                <p>Compare Restaurants You Find</p>
+                <h4 className='text-2xl font-bold mb-1 text-black'>Đánh giá</h4>
+                <p>Xem đánh giá của nhà hàng</p>
             </div> 
            <div className='text-center mx-auto mb-5 md:mb-0'>
                 <RiWechatLine className='mx-auto w-10 h-10 mb-4 color-red'/>
-                <h4 className='text-2xl font-bold mb-1 text-black'>Connect</h4>
-                <p>Contact Restaurants You Like</p>
+                <h4 className='text-2xl font-bold mb-1 text-black'>Liên hệ</h4>
+                <p>Liên hệ với nhà hàng</p>
             </div> 
         </div>
     );
