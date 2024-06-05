@@ -1,14 +1,19 @@
-import React from 'react';
-import ServicesBanner from '../ServicesBanner/ServicesBanner';
-import ServicesCollection from '../ServicesCollection/ServicesCollection';
+import React from "react";
+import ServicesBanner from "../ServicesBanner/ServicesBanner";
+import ServicesCollection from "../ServicesCollection/ServicesCollection";
+import { useState } from "react";
 
 const Services = () => {
-    return (
-        <div>
-            <ServicesBanner></ServicesBanner>
-            <ServicesCollection></ServicesCollection>
-        </div>
-    );
+  const [search, setSearch] = useState("");
+
+  return (
+    <div className="bg-white">
+      <ServicesBanner search={search} setSearch={setSearch}></ServicesBanner>
+      <ServicesCollection
+        search={search}
+        setSearch={setSearch}></ServicesCollection>
+    </div>
+  );
 };
 
 export default Services;
