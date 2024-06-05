@@ -52,8 +52,8 @@ const Header = () => {
                         {user?.photoURL ? <img src={user.photoURL} alt="" /> :  <img src={avatar} alt="User" />}
                     </div>
                 </label>
-                {/* {
-                    user?.uid ? 
+                {
+                    user?.uid ?
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
                         <NavLink to="/edit-profile" className="justify-between bg-transparent text-black">
@@ -63,14 +63,12 @@ const Header = () => {
                         <li onClick={handleSignOut}><NavLink className="bg-transparent text-black">Logout</NavLink></li>
                     </ul> : <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bgcolor-white rounded-box w-52">
                         <li>
-                        <NavLink to="/login" className="justify-between bg-transparent text-black">
-                            Login
-                        </NavLink>
+                            <NavLink to="/anket" className='bg-transparent text-black '><li>Anket</li></NavLink>
                         </li>
-                        <li><NavLink to="/signup" className="bg-transparent text-black">Sign Up</NavLink></li>
+                        {/*<li><NavLink to="/signup" className="bg-transparent text-black">Sign Up</NavLink></li>*/}
                     </ul>
-                } */}
-                
+                }
+
             </div>
             </div>
         </div>
