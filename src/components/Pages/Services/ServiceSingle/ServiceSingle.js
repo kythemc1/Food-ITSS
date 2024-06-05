@@ -132,7 +132,7 @@ const ServiceSingle = () => {
                     {details?.specialties && 
                     <div className='my-2'>
                         <h2 className='font-semibold text-md mb-2'>Specialties</h2>
-                        {details.specialties}    
+                        {details?.specialties}    
                     </div>}
                     <div className="flex flex-wrap justify-center">
                     {Array(5).fill(0).map((_, index) => (
