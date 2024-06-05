@@ -12,6 +12,7 @@ import NotFoundPage from "../../components/Shared/NotFoundPage/NotFoundPage";
 import Main from "../../layout/Main";
 import User from "../../layout/User";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Anket from "../../components/Pages/Anket/Anket/Anket";
 
 const Router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const Router = createBrowserRouter([
         path: "/signup",
         element: <SignUp></SignUp>,
       },
+        {
+            path: '/anket',
+            element: <Anket></Anket>
+        }
     ],
   },
   {
