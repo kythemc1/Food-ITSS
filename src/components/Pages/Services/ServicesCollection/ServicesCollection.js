@@ -9,12 +9,12 @@ const ServicesCollection = () => {
   const services = useLoaderData();
 
   return (
-    <div className="my-8 md:my-16 mx-8 md:mx-0">
+    <div className="pb-16 pt-16 bg-white">
       <div className="mx-auto md:w-11/12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service) => (
             <div key={service.id}>
-              <div className="card serviceCard w-full md:mx-0 bg-base-100 shadow-xl">
+              <div className="card serviceCard w-full md:mx-0 bg-zinc-100 shadow-xl">
                 <PhotoProvider>
                   <PhotoView key={service.id} src={service?.media[0]?.link}>
                     <figure>
@@ -22,7 +22,7 @@ const ServicesCollection = () => {
                     </figure>
                   </PhotoView>
                 </PhotoProvider>
-                <div className="card-body">
+                <div className="card-body text-black">
                   <h2 className="card-title text-xl">{service?.name}</h2>
                   <div className="flex items-center">
                     <BsStarFill className="color-red mr-1" />

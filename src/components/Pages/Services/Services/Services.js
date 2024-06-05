@@ -4,7 +4,7 @@ import ServicesCollection from '../ServicesCollection/ServicesCollection';
 
 const Services = () => {
     return (
-        <div>
+        <div className='bg-white'>
             <ServicesBanner></ServicesBanner>
             <ServicesCollection></ServicesCollection>
         </div>
