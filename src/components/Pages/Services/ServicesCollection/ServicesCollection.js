@@ -54,7 +54,7 @@ const ServicesCollection = ({ search, setSearch }) => {
                       </span>
                     </div>
                     <p>
-                      Specialties:
+                      Nổi bật:
                       {" " +
                         service?.food_drinks[0]?.name +
                         (service?.food_drinks[1]?.name
@@ -66,7 +66,7 @@ const ServicesCollection = ({ search, setSearch }) => {
                     </p>
                     <div className="card-actions justify-end">
                       <Link to={`/services/${service.id}`} className="badge">
-                        More
+                        Xem thêm
                       </Link>
                     </div>
                   </div>
@@ -75,7 +75,7 @@ const ServicesCollection = ({ search, setSearch }) => {
             ))
           ) : (
             <h4 className=" text-xl text-black flex items-center pb-8">
-              No Restaurant Found. Please try again
+              Không tìm thấy nhà hàng. Hãy kiểm tra lại.
             </h4>
           )}
         </div>

@@ -26,7 +26,7 @@ const ServicesBanner = ({ search, setSearch }) => {
             <div className="mr-1 w-9/12 ">
               <input
                 type="search"
-                placeholder="Search…"
+                placeholder="Tìm kiếm món ăn, nhà hàng,…"
                 className="input w-full text-black bg-white"
                 onChange={handleSearchQueryChange}
               />
