@@ -1,208 +1,179 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { BsStarFill, BsStarHalf } from 'react-icons/bs';
+import React, { useContext, useState } from "react";
+import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
-import { FaHeart } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
-import { Link, useLoaderData } from 'react-router-dom';
-import './ServiceSingle.css';
-import { AuthContext } from '../../../../context/AuthProvider';
-import toast, { Toaster } from 'react-hot-toast';
-import { PhotoProvider, PhotoView } from 'react-photo-view';
-
+import { useLoaderData } from "react-router-dom";
+import "./ServiceSingle.css";
+import { AuthContext } from "../../../../context/AuthProvider";
+import { AiFillLike } from "react-icons/ai";
+import Select from "react-select";
 
 const ServiceSingle = () => {
-    const {user} = useContext(AuthContext)
-    const service = useLoaderData();
-    const {_id, title, image_url, rating, location, amenities, details} = service;
-    const [reviews, setReviews] = useState([]);
-    const [starFilter, setStarFilter] = useState('all');
-    const [likedItemList, setLikedItemList] = useState([]);
+  const { user } = useContext(AuthContext);
+  const service = useLoaderData();
+  const { id, name, rating, reviews, location, media, food_drinks } = service;
+  const [starFilter, setStarFilter] = useState("all");
 
-    // handle change liked item list
-    const handleLikedItemList = (index) => {
-        // check if existed => remove
-        if (likedItemList.includes(index)) 
-            setLikedItemList((prev) => prev.filter((e) => e !== index))
-        else 
-            setLikedItemList((prev) => [...prev, index])
+  const filteredReviews = reviews.filter((review) => {
+    if (starFilter === "all") {
+      return true;
+    } else {
+      const rating = review.rating;
+      if (starFilter === "5") {
+        return rating === 5;
+      } else if (starFilter === "4") {
+        return rating === 4;
+      } else if (starFilter === "3") {
+        return rating === 3;
+      } else if (starFilter === "2") {
+        return rating === 2;
+      } else if (starFilter === "1") {
+        return rating === 1;
+      }
     }
+  });
 
-    console.log('====================================');
-    console.log("likedItemList: ", likedItemList);
-    console.log('====================================');
+  const options = [
+    { value: "all", label: "All" },
+    { value: "1", label: "1 Star" },
+    { value: "2", label: "2 Stars" },
+    { value: "3", label: "3 Stars" },
+    { value: "4", label: "4 Stars" },
+    { value: "5", label: "5 Stars" },
+  ];
 
-    const handleStarFilter = (event) => {
-        setStarFilter(event.target.value);
-    };
+  // const handleLike = (id) => {
+  //   fetch(`http://localhost:8000/api/reviews/${id}?type=like`, {
+  //     method: "POST",
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //     });
+  // };
 
-    const filteredReviews = reviews.filter((review) => {
-        if (starFilter === 'all') {
-            return true;
-        } else {
-            const rating = review.rating;
-            if (starFilter === '5') {
-                return rating === 5;
-            } else if (starFilter === '4') {
-                return rating === 4;
-            } else if (starFilter === '3') {
-                return rating === 3;
-            } else if (starFilter === '2') {
-                return rating === 2;
-            } else if (starFilter === '1') {
-                return rating === 1;
-            }
-        }
-    });
-
-    const handleSubmit = event =>{
-        event.preventDefault();
-        const form = event.target;
-        const review = form.review.value;
-        const data = {
-            userId: user.uid,
-            userName: user.displayName,
-            userImg: user.photoURL,
-            serviceId: _id,
-            serviceTitle: title,
-            serviceImgURL: image_url,
-            details: review
-        }
-        fetch('https://food-monster-server.vercel.app/reviews/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                toast.success('Review Added Successfully')
-                form.reset();
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    }
-
-    useEffect(() => {
-        const fetchReviews = async () => {
-            try {
-                const response = await fetch(`https://food-monster-server.vercel.app/reviews/${_id}`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch reviews');
-                }
-                const data = await response.json();
-                setReviews(data);
-            } catch (error) {
-                console.error('Error fetching reviews:', error);
-            }
-        };
-    
-        fetchReviews();
-    
-        return () => {
-            console.log("Cleanup useEffect");
-        };
-    }, [_id]);
-    
-
-    return (
-        <div>
-            <div className="hero hero-service " style={{ backgroundImage: `url("${image_url}")` }}>
-                <div className="hero-overlay bg-opacity-60"></div>
-                <div className="hero-content ml-20 text-neutral-content">
-                    <div className="my-16 text-white">
-                        <h1 className="mb-5 text-5xl font-bold ">{title}</h1>
-                        <div className='flex items-center text-xl font-semibold '>
-                            <BsStarFill className='star-color mr-1'/><BsStarFill className='star-color mr-1'/><BsStarFill className='star-color mr-1'/><BsStarFill className='star-color mr-1'/><BsStarHalf className='star-color mr-2'/> {rating?.number}
-                        </div>
-                        <div className='pt-10'>
-                            {/* <h2 className='font-semibold text-xl '></h2> */}
-                            <div className='w-full flex space-between md:w-6/12 my-2'>                             
-                                 <FaLocationDot className='text-xl' style={{marginRight:"4px",marginTop:"-2px"}}/> {location}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <div>
+      <div
+        className="hero hero-service "
+        style={{ backgroundImage: `url("${media[0]?.link}")` }}>
+        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-content ml-20 text-neutral-content">
+          <div className="my-16 text-white">
+            <h1 className="mb-5 text-5xl font-bold ">{name}</h1>
+            <div className="flex items-center text-xl font-semibold ">
+              <BsStarFill className="star-color mr-1" />
+              <BsStarFill className="star-color mr-1" />
+              <BsStarFill className="star-color mr-1" />
+              <BsStarFill className="star-color mr-1" />
+              <BsStarHalf className="star-color mr-2" /> {rating?.number}
             </div>
-            <div className='px-24 text-black bg-white pb-10'>
-                {amenities ? <div>
-                    <div className='mb-2'>
-                    <h2 className='font-semibold text-2xl mb-3 pt-8'>About the business</h2>
-                    {details?.specialties && 
-                    <div className='my-2'>
-                        <h2 className='font-semibold text-md mb-2'>Specialties</h2>
-                        {details?.specialties}    
-                    </div>}
-                    <div className="flex flex-wrap justify-center">
-                    {Array(5).fill(0).map((_, index) => (
-                        <div key={index} className=" shadow-xl w-48 mt-8 mr-8 rounded-lg">
-                        <div className=  "w-48  rounded-lg border-1 border-zinc-200">
-                            <img className="rounded-t-lg object-cover w-full h-48" src="https://mmmrecipes.com/wp-content/uploads/2024/05/Raspberry-Cheesecake-Cupcakes-vfh.png" alt="Shoes" />                    
-                        </div>
-                        <div className="text-black bg-zinc-100 " >
-                            <h2 className="text-l">
-                                Bun cha
-                            </h2>
-                            <div className='flex items-center '>
-                            <BsStarFill className='star-color mr-1 '/><BsStarFill className='star-color mr-1'/><BsStarFill className='star-color mr-1'/><BsStarFill className='star-color mr-1'/><BsStarHalf className='star-color mr-2'/> {service?.rating?.number}
-                            </div>
-                        </div>
-                        </div>
-                    ))}
-                    </div>
-                    {details?.history && 
-                    <div className='my-2'>
-                        <h2 className='font-semibold text-md mb-2'>History</h2>
-                        {details.history}    
-                    </div>}
-                </div>
-                </div> : <></>}
-             </div>    
-                <div className='px-24 text-black bg-zinc-100 pb-4'>
-                    <h2 className='font-semibold text-2xl mb-3 pt-8 '>Reviews</h2>
-                    <div>
-                        {reviews ? reviews.map((review, index)=> 
-                            <div key={review._id} className="card bg-white shadow-xl my-4">
-                                <div className="card-body">
-                                    <>  
-                                        <p className="card-title text-sm">
-                                            <div className="avatar ">
-                                                <div className="w-8 rounded-full border-2 border-zinc-200 ">
-                                                    <img src={review.userImg} alt=""/>
-                                                </div>
-                                            </div>
-                                            {review.userName} <BsStarFill className='star-color'/><BsStarFill className='star-color'/><BsStarFill className='star-color'/><BsStarFill className='star-color'/><BsStarHalf className='star-color'/>
-                                        </p>
-                                    </>
-                                    <p>{review.details}</p>
-                                    <div className="flex justify-end mb-2" onClick={() => handleLikedItemList(index)}>
-                                        {likedItemList.includes(index) ? <FaHeart className= 'text-gray-400' /> : <FaHeart className= 'color-red'/>
-}                                    </div>
-                                </div>
-                            </div>) : <h4>No review yet</h4>  
-                        }
-                    </div>
-                {/* <div className="divider"></div>
-                <div className='mb-5'>
-                    <h2 className='font-semibold text-2xl my-3'>Add Reviews</h2>
-                    {
-                    user?.uid ? 
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-control mb-4 w-full md:w-6/12">
-                            <textarea className="textarea textarea-bordered" name='review' placeholder="Write review"></textarea>
-                        </div>
-                        <input type="submit" className='btn red-button' value="Submit review" />
-                        <Toaster />
-                    </form>: 
-                    <Link to="/login" className='btn red-button'>You must login to add a review</Link> 
-                    
-                    }
-                    
-                </div> */}
+            <div className="pt-10">
+              <div className="w-full flex space-between md:w-6/12 my-2">
+                <FaLocationDot
+                  className="text-xl"
+                  style={{ marginRight: "4px", marginTop: "-2px" }}
+                />{" "}
+                {location}
+              </div>
             </div>
+          </div>
         </div>
-    );
+      </div>
+      <div className="px-24 text-black bg-white pb-10">
+        <div>
+          <div className="mb-2">
+            <h2 className="font-semibold text-2xl mb-3 pt-8">
+              Food and Drinks
+            </h2>
+            <div className="flex flex-wrap justify-left">
+              {food_drinks.map((food_drink, index) => (
+                <div
+                  key={index}
+                  className=" shadow-xl w-48 mt-8 mr-8 rounded-lg">
+                  <div className="w-48  rounded-lg border-1 border-zinc-200">
+                    <img
+                      className="rounded-t-lg object-cover w-full h-48"
+                      src={media[1]?.link}
+                      alt="Shoes"
+                    />
+                  </div>
+                  <div
+                    className="text-black bg-zinc-100 card-body"
+                    style={{ padding: "1rem" }}>
+                    <p className="card-title text-sm">{food_drink?.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="px-24 text-black bg-zinc-100 pb-4">
+        <div className="col-span-2">
+          <h2 className="font-semibold text-2xl mb-3 pt-8 ">Reviews</h2>
+          <div className="w-80">
+            <Select
+              options={options}
+              name="Rating"
+              className="basic-multi-select"
+              classNamePrefix="select"
+              onChange={(e) => setStarFilter(e.value)}
+            />
+          </div>
+        </div>
+        <div>
+          {filteredReviews ? (
+            filteredReviews.map((review, index) => (
+              <div key={review.id} className="card bg-white shadow-xl my-4">
+                <div className="card-body">
+                  <>
+                    <p className="card-title text-sm">
+                      <div className="avatar">
+                        <div className="w-8 rounded-full">
+                          <img src={review?.image_link} alt="" />
+                        </div>
+                      </div>
+                      {review.reviewer}{" "}
+                      {review.rating >= 1 && (
+                        <BsStarFill className="star-color" />
+                      )}
+                      {review.rating >= 2 && (
+                        <BsStarFill className="star-color" />
+                      )}
+                      {review.rating >= 3 && (
+                        <BsStarFill className="star-color" />
+                      )}
+                      {review.rating >= 4 && (
+                        <BsStarFill className="star-color" />
+                      )}
+                      {review.rating === 5 && (
+                        <BsStarFill className="star-color" />
+                      )}
+                    </p>
+                  </>
+                  <p>{review.content}</p>
+                  <div
+                    className="flex justify-end mb-2"
+                    // onClick={handleLike(review.id)}
+                  >
+                    <AiFillLike size={30} color="red"></AiFillLike>
+                    <a className="ml-2" style={{ alignContent: "end" }}>
+                      {review.like}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <h4>No review yet</h4>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ServiceSingle;
