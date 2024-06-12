@@ -17,7 +17,7 @@ const ServicesCollection = () => {
                             <div className="card serviceCard w-full md:mx-0 bg-zinc-100 shadow-xl">
                                 <PhotoProvider>
                                     <PhotoView key={service._id} src={service.image_url}>
-                                        <figure><img src={service.image_url} alt="Shoes" /></figure>
+                                        <figure><img className="rounded-t-lg object-cover w-full h-72" src={service.image_url} alt="Shoes" /></figure>
                                     </PhotoView>
                                 </PhotoProvider>
                                 <div className="card-body text-black">
