@@ -75,7 +75,7 @@ const Anket = () => {
             <div className="hero-overlay bg-opacity-70"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="my-12">
-                    <h1 className="mb-5 text-5xl font-bold">Choose Your Favorite Food or Drinks</h1>
+                    <h1 className="mb-5 text-5xl font-bold">Chọn món ăn và đồ uống bạn yêu thích</h1>
                     <div className="form-control flex flex-row">
                     </div>
                 </div>
@@ -173,7 +173,7 @@ const Anket = () => {
             <button className="btn w-3/12" onClick={() => {
                 submit()
             }}>
-                Done
+                Hoàn thành
             </button>
         </div>
     </div>);

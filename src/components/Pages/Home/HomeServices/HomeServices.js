@@ -36,7 +36,7 @@ const HomeServices = () => {
                                     </div>
                                     <p>{service.details.specialties.slice(0, 100) + '...'}</p>
                                     <div className="card-actions justify-end">
-                                    <Link to={`/services/${service._id}`} className="badge">More</Link>
+                                    <Link to={`/services/${service._id}`} className="badge">Xem thêm</Link>
                                     </div>
                                 </div>
                             </div>
