@@ -70,12 +70,12 @@ const Anket = () => {
 
     }
 
-    return (<div style={{marginBottom: 150}}>
+    return (<div style={{marginBottom: 150, backgroundColor: 'white'}}>
         <div className="hero" style={{backgroundImage: `url("${BgImage}")`}}>
             <div className="hero-overlay bg-opacity-70"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="my-12">
-                    <h1 className="mb-5 text-5xl font-bold">Choose Your Favorite Food or Drinks</h1>
+                    <h1 className="mb-5 text-5xl font-bold">Chọn món ăn và đồ uống bạn yêu thích</h1>
                     <div className="form-control flex flex-row">
                     </div>
                 </div>
@@ -84,7 +84,7 @@ const Anket = () => {
         <div style={{marginTop: 40, display: 'flex'}}>
             <div>
                 <img
-                    style={{height: 80, marginLeft: 80, flexShrink: 0}}
+                    style={{height: 120, marginLeft: 80, flexShrink: 0}}
                     src={food}
                     alt={"food"}
                 />
@@ -125,10 +125,10 @@ const Anket = () => {
                 </div>
             </div>
         </div>
-        <div style={{marginTop: 80, display: 'flex'}}>
+        <div style={{marginTop: 40, display: 'flex'}}>
             <div>
                 <img
-                    style={{height: 80, marginLeft: 80, flexShrink: 0}}
+                    style={{height: 120, marginLeft: 80, flexShrink: 0}}
                     src={drink}
                     alt={"food"}
                 />
@@ -170,10 +170,10 @@ const Anket = () => {
         </div>
 
         <div style={{marginTop: 50, justifyContent: 'right', display: 'flex', marginRight: 40}}>
-            <button className="btn w-3/12" onClick={() => {
+            <button style={{backgroundColor: '#FF3A44'}} className="btn w-3/12" onClick={() => {
                 submit()
             }}>
-                Done
+                Hoàn thành
             </button>
         </div>
     </div>);

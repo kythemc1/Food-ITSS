@@ -14,8 +14,8 @@ const HomeServices = () => {
     return (
         <div className=' bg-white p-4'>
             <div className='text-center my-12'>
-                <h2 className='text-4xl font-bold text-black'>Suggestion for you</h2>
-                <p className='text-black-500 pt-5'>The easiest way to your favorite food</p>
+                <h2 className='text-4xl font-bold text-black'>Gợi ý cho bạn</h2>
+                <p className='text-black-500 pt-5'>Dễ dàng tìm dược món ăn yêu thích</p>
             </div>
             <div className='mx-auto md:w-11/12'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
@@ -36,7 +36,7 @@ const HomeServices = () => {
                                     </div>
                                     <p>{service.details.specialties.slice(0, 100) + '...'}</p>
                                     <div className="card-actions justify-end">
-                                    <Link to={`/services/${service._id}`} className="badge">More</Link>
+                                    <Link to={`/services/${service._id}`} className="badge">Xem thêm</Link>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@ const HomeServices = () => {
                     }
                 </div>
                 <div className='text-center mt-10'>
-                    <Link to="/services" className='btn red-button'>Load More</Link>
+                    <Link to="/services" className='btn red-button'>Xem thêm</Link>
                 </div>
             </div>
         </div>

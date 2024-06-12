@@ -28,7 +28,7 @@ const ServicesCollection = ({ search, setSearch }) => {
                   <PhotoProvider>
                     <PhotoView key={service.id} src={service?.media[0]?.link}>
                       <figure>
-                        <img src={service?.media[0]?.link} alt="Shoes" />
+                        <img className="rounded-t-lg object-cover w-full h-72" src={service?.media[0]?.link} alt="Shoes" />
                       </figure>
                     </PhotoView>
                   </PhotoProvider>
@@ -54,7 +54,7 @@ const ServicesCollection = ({ search, setSearch }) => {
                       </span>
                     </div>
                     <p>
-                      Specialties:
+                      Nổi bật:
                       {" " +
                         service?.food_drinks[0]?.name +
                         (service?.food_drinks[1]?.name
@@ -66,7 +66,7 @@ const ServicesCollection = ({ search, setSearch }) => {
                     </p>
                     <div className="card-actions justify-end">
                       <Link to={`/services/${service.id}`} className="badge">
-                        More
+                        Xem thêm
                       </Link>
                     </div>
                   </div>
@@ -75,7 +75,7 @@ const ServicesCollection = ({ search, setSearch }) => {
             ))
           ) : (
             <h4 className=" text-xl text-black flex items-center pb-8">
-              No Restaurant Found. Please try again
+              Không tìm thấy nhà hàng. Hãy kiểm tra lại.
             </h4>
           )}
         </div>
