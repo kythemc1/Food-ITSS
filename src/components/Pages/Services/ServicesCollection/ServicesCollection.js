@@ -28,7 +28,7 @@ const ServicesCollection = ({ search, setSearch }) => {
                   <PhotoProvider>
                     <PhotoView key={service.id} src={service?.media[0]?.link}>
                       <figure>
-                        <img src={service?.media[0]?.link} alt="Shoes" />
+                        <img className="rounded-t-lg object-cover w-full h-72" src={service?.media[0]?.link} alt="Shoes" />
                       </figure>
                     </PhotoView>
                   </PhotoProvider>
