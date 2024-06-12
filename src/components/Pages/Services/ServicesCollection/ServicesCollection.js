@@ -28,18 +28,32 @@ const ServicesCollection = ({ search, setSearch }) => {
                   <PhotoProvider>
                     <PhotoView key={service.id} src={service?.media[0]?.link}>
                       <figure>
-                        <img className="rounded-t-lg object-cover w-full h-72" src={service?.media[0]?.link} alt="Shoes" />
+                        <img
+                          className="rounded-t-lg object-cover w-full h-72"
+                          src={service?.media[0]?.link}
+                          alt="Shoes"
+                        />
                       </figure>
                     </PhotoView>
                   </PhotoProvider>
                   <div className="card-body text-black">
                     <h2 className="card-title text-xl">{service?.name}</h2>
                     <div className="flex items-center">
-                      <BsStarFill className="color-red mr-1" />
-                      <BsStarFill className="color-red mr-1" />
-                      <BsStarFill className="color-red mr-1" />
-                      <BsStarFill className="color-red mr-1" />
-                      <BsStarHalf className="color-red mr-2" />{" "}
+                      {service.rating >= 1 && (
+                        <BsStarFill className="star-color mr-1" />
+                      )}
+                      {service.rating >= 1.5 && (
+                        <BsStarFill className="star-color mr-1" />
+                      )}
+                      {service.rating >= 2.5 && (
+                        <BsStarFill className="star-color mr-1" />
+                      )}
+                      {service.rating >= 3.5 && (
+                        <BsStarFill className="star-color mr-1" />
+                      )}
+                      {service.rating === 4.5 && (
+                        <BsStarFill className="star-color mr-1" />
+                      )}
                       {service?.rating}
                     </div>
                     <div className="flex items-center">
@@ -47,10 +61,6 @@ const ServicesCollection = ({ search, setSearch }) => {
                         <RiEBike2Fill className="color-red mr-2" />
                         {service?.location.slice(0, 40) +
                           (service?.location.length > 40 ? "..." : "")}
-                      </span>
-                      <span className="text-sm flex items-center">
-                        {/* <IoCart className="color-red mr-2" />
-                      {service?.amenities?.takeout} */}
                       </span>
                     </div>
                     <p>

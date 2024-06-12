@@ -22,7 +22,7 @@ const Router = createBrowserRouter([
       {
         path: "/",
         loader: async () =>
-          fetch("https://food-monster-server.vercel.app/homeservices"),
+          fetch("http://127.0.0.1:8000/api/eateries/all"),
         element: <Home></Home>,
       },
       {
