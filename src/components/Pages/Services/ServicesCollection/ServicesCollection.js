@@ -8,7 +8,7 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 const ServicesCollection = ({ search, setSearch }) => {
   const services = useLoaderData();
 
-  var newData = services.map((item) => {
+  var newData = services?.map((item) => {
     const searchKey = `${item.food_drinks.map((fd) => fd.name).join(" ")}`;
     return { ...item, searchKey };
   });
