@@ -36,21 +36,11 @@ const HomeServices = () => {
                   <div className="card-body text-black">
                     <h2 className="card-title text-xl">{service?.name}</h2>
                     <div className="flex items-center">
-                      {service.rating >= 1 && (
-                        <BsStarFill className="star-color mr-1" />
-                      )}
-                      {service.rating >= 1.5 && (
-                        <BsStarFill className="star-color mr-1" />
-                      )}
-                      {service.rating >= 2.5 && (
-                        <BsStarFill className="star-color mr-1" />
-                      )}
-                      {service.rating >= 3.5 && (
-                        <BsStarFill className="star-color mr-1" />
-                      )}
-                      {service.rating === 4.5 && (
-                        <BsStarFill className="star-color mr-1" />
-                      )}
+                      {service.rating >= 1 && (<BsStarFill className="star-color mr-1" />)}
+                      {service.rating >= 1.5 && (<BsStarFill className="star-color mr-1" />)}
+                      {service.rating >= 2.5 && (<BsStarFill className="star-color mr-1" />)}
+                      {service.rating >= 3.5 && (<BsStarFill className="star-color mr-1" />)}
+                      {service.rating >= 4.5 && (<BsStarFill className="star-color mr-1" />)}
                       {service?.rating}
                     </div>
                     <div className="flex items-center">
