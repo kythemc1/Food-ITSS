@@ -108,11 +108,12 @@ const ServiceSingle = () => {
           <div className="my-16 text-white">
             <h1 className="mb-5 text-5xl font-bold ">{name}</h1>
             <div className="flex items-center text-xl font-semibold ">
-              <BsStarFill className="star-color mr-1" />
-              <BsStarFill className="star-color mr-1" />
-              <BsStarFill className="star-color mr-1" />
-              <BsStarFill className="star-color mr-1" />
-              <BsStarHalf className="star-color mr-2" /> {rating?.number}
+              {rating >= 1 && (<BsStarFill className="star-color mr-1" />)}
+              {rating >= 1.5 && (<BsStarFill className="star-color mr-1" />)}
+              {rating >= 2.5 && (<BsStarFill className="star-color mr-1" />)}
+              {rating >= 3.5 && (<BsStarFill className="star-color mr-1" />)}
+              {rating >= 4.5 && (<BsStarFill className="star-color mr-1" />)}
+              {rating}
             </div>
             <div className="pt-10">
               <div className="w-full flex space-between md:w-6/12 my-2">
