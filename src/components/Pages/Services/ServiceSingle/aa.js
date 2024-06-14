@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { BsStarFill } from "react-icons/bs";
+import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
 import { useLoaderData } from "react-router-dom";
 import "./ServiceSingle.css";
@@ -25,7 +25,34 @@ const ServiceSingle = () => {
     setReviewLikes(initialLikes);
   }, [reviews]);
 
-  // Function to handle like/unlike action
+  const filteredReviews = reviews.filter((review) => {
+    if (starFilter === "all") {
+      return true;
+    } else {
+      const rating = review.rating;
+      if (starFilter === "5") {
+        return rating === 5;
+      } else if (starFilter === "4") {
+        return rating === 4;
+      } else if (starFilter === "3") {
+        return rating === 3;
+      } else if (starFilter === "2") {
+        return rating === 2;
+      } else if (starFilter === "1") {
+        return rating === 1;
+      }
+    }
+  });
+
+  const options = [
+    { value: "all", label: "All" },
+    { value: "1", label: "1 Star" },
+    { value: "2", label: "2 Stars" },
+    { value: "3", label: "3 Stars" },
+    { value: "4", label: "4 Stars" },
+    { value: "5", label: "5 Stars" },
+  ];
+
   const handleLikedItemList = (index) => {
     if (likedItemList.includes(index)) {
       // Unlike logic
@@ -51,9 +78,12 @@ const ServiceSingle = () => {
       })
       .then((response) => response.json())
       .then((data) => {
+        console.log('====================================');
+        console.log("likedItemList: ", likedItemList);
+        console.log('====================================');
         setReviewLikes((prev) => ({
           ...prev,
-          [index]: prev[index] + 1 // Increase like count by 1
+          [index]: prev[index] + 1 
         }));
       })
       .catch((error) => {
@@ -62,40 +92,12 @@ const ServiceSingle = () => {
     }
   };
 
-  // Function to render like count for a review
   const renderLikeCount = (index) => {
     return <a className="ml-2" style={{ alignContent: "end" }}>{reviewLikes[index]}</a>;
   };
 
-  // Options for star filter select
-  const options = [
-    { value: "all", label: "All" },
-    { value: "1", label: "1 Star" },
-    { value: "2", label: "2 Stars" },
-    { value: "3", label: "3 Stars" },
-    { value: "4", label: "4 Stars" },
-    { value: "5", label: "5 Stars" },
-  ];
 
-  // Filtered and sorted reviews based on starFilter
-  const filteredReviews = reviews
-    .filter((review) => {
-      if (starFilter === "all") {
-        return true;
-      } else {
-        return review.rating.toString() === starFilter;
-      }
-    })
-    .sort((a, b) => b.like - a.like); // Sort by review.like in descending order
-    const calculateAverageRating = () => {
-      if (reviews.length === 0) return 0;
-  
-      const sum = reviews.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue.rating;
-      }, 0);
-  
-      return (sum / reviews.length).toFixed(1); // Return average rating rounded to 1 decimal place
-    };
+
 
   return (
     <div>
@@ -127,7 +129,7 @@ const ServiceSingle = () => {
         </div>
       </div>
       <div className="px-24 text-black bg-white pb-10">
-      <div>
+        <div>
           <div className="mb-2">
             <h2 className="font-semibold text-2xl mb-3 pt-8">
               Food and Drinks
@@ -157,7 +159,7 @@ const ServiceSingle = () => {
       </div>
       <div className="px-24 text-black bg-zinc-100 pb-4">
         <div className="col-span-2">
-          <h2 className="font-semibold text-2xl mb-3 pt-8 ">Reviews ({filteredReviews.length})</h2>
+          <h2 className="font-semibold text-2xl mb-3 pt-8 ">Reviews ({reviews.length})</h2>
           <div className="w-80">
             <Select
               options={options}
@@ -169,29 +171,45 @@ const ServiceSingle = () => {
           </div>
         </div>
         <div>
-          {filteredReviews.length > 0 ? (
+          {filteredReviews ? (
             filteredReviews.map((review, index) => (
               <div key={review.id} className="card bg-white shadow-xl my-4">
                 <div className="card-body">
+                  <>
                     <p className="card-title text-sm">
-                      <div className=" text-xl">
+                      <div className="avatar text-xl">
                           <FaCircleUser/>
                       </div>
-                      <p>{review.reviewer}{" "}</p>
-                      {[...Array(Math.floor(review.rating))].map((_, i) => (
-                        <BsStarFill key={i} className="star-color" />
-                      ))}
-                      {review.rating}
+                      {review.reviewer}{" "}
+                      {review.rating >= 1 && (
+                        <BsStarFill className="star-color" />
+                      )}
+                      {review.rating >= 2 && (
+                        <BsStarFill className="star-color" />
+                      )}
+                      {review.rating >= 3 && (
+                        <BsStarFill className="star-color" />
+                      )}
+                      {review.rating >= 4 && (
+                        <BsStarFill className="star-color" />
+                      )}
+                      {review.rating === 5 && (
+                        <BsStarFill className="star-color" />
+                      )}
                     </p>
+                  </>
                   <div className="flex flex-wrap space-between">
-                    <div className="w-32 h-24">
-                      <img src={review.image_link} alt="" />
+                    <div className="w-32 h-32 ">
+                      <img src={review?.image_link} alt="" />
                     </div>
                     <div className="w-128 h-24 pl-8">
                       {review.content}
                     </div>
                   </div>
-                  <div className="flex justify-end mb-2">
+                  <div
+                    className="flex justify-end mb-2"
+                    // onClick={handleLike(review.id)}
+                  >
                     <AiFillLike
                       size={30}
                       color={likedItemList.includes(review.id) ? "red" : "black"}
@@ -203,7 +221,7 @@ const ServiceSingle = () => {
               </div>
             ))
           ) : (
-            <h4>No reviews matching the filter criteria</h4>
+            <h4>No review yet</h4>
           )}
         </div>
       </div>
