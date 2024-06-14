@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
 import { useLoaderData } from "react-router-dom";
@@ -12,6 +12,17 @@ const ServiceSingle = () => {
   const service = useLoaderData();
   const { id, name, rating, reviews, location, media, food_drinks } = service;
   const [starFilter, setStarFilter] = useState("all");
+  const [likedItemList, setLikedItemList] = useState([]);
+  const [reviewLikes, setReviewLikes] = useState({}); // State to keep track of like counts
+
+  useEffect(() => {
+    // Initialize reviewLikes state with initial like counts from reviews
+    const initialLikes = {};
+    reviews.forEach(review => {
+      initialLikes[review.id] = review.like || 0;
+    });
+    setReviewLikes(initialLikes);
+  }, [reviews]);
 
   const filteredReviews = reviews.filter((review) => {
     if (starFilter === "all") {
@@ -41,18 +52,51 @@ const ServiceSingle = () => {
     { value: "5", label: "5 Stars" },
   ];
 
-  // const handleLike = (id) => {
-  //   fetch(`http://localhost:8000/api/reviews/${id}?type=like`, {
-  //     method: "POST",
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-  // };
+  const handleLikedItemList = (index) => {
+    if (likedItemList.includes(index)) {
+      // Unlike logic
+      setLikedItemList((prev) => prev.filter((e) => e !== index));
+      fetch(`http://localhost:8000/api/reviews/${index}?type=dislike`, {
+        method: "POST",
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        setReviewLikes((prev) => ({
+          ...prev,
+          [index]: prev[index] - 1 // Decrease like count by 1
+        }));
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    } else {
+      // Like logic
+      setLikedItemList((prev) => [...prev, index]);
+      fetch(`http://localhost:8000/api/reviews/${index}?type=like`, {
+        method: "POST",
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('====================================');
+        console.log("likedItemList: ", likedItemList);
+        console.log('====================================');
+        setReviewLikes((prev) => ({
+          ...prev,
+          [index]: prev[index] + 1 
+        }));
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    }
+  };
+
+  const renderLikeCount = (index) => {
+    return <a className="ml-2" style={{ alignContent: "end" }}>{reviewLikes[index]}</a>;
+  };
+
+
+
 
   return (
     <div>
@@ -159,10 +203,12 @@ const ServiceSingle = () => {
                     className="flex justify-end mb-2"
                     // onClick={handleLike(review.id)}
                   >
-                    <AiFillLike size={30} color="red"></AiFillLike>
-                    <a className="ml-2" style={{ alignContent: "end" }}>
-                      {review.like}
-                    </a>
+                    <AiFillLike
+                      size={30}
+                      color={likedItemList.includes(review.id) ? "red" : "black"}
+                      onClick={() => handleLikedItemList(review.id)}
+                    />
+                    {renderLikeCount(review.id)}
                   </div>
                 </div>
               </div>
