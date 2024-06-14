@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
 import food from '../../../../assets/images/food.jpg';
 import drink from '../../../../assets/images/drink.jpg';
 import BgImage from "../../../../assets/images/u594-hero.jpg";
@@ -7,6 +8,7 @@ const Anket = () => {
 
     const [listFood, setListFood] = useState([])
     const [listDrink, setListDrink] = useState([])
+
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/food_drinks`)
             .then(res => res.json())
@@ -67,15 +69,14 @@ const Anket = () => {
                 )
         } catch (error) {
         }
-
     }
 
-    return (<div style={{marginBottom: 150, backgroundColor: 'white'}}>
+    return (<div style={{paddingBottom: 150, backgroundColor: 'white'}}>
         <div className="hero" style={{backgroundImage: `url("${BgImage}")`}}>
             <div className="hero-overlay bg-opacity-70"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="my-12">
-                    <h1 className="mb-5 text-5xl font-bold">Chọn món ăn và đồ uống bạn yêu thích</h1>
+                    <h1 className="mb-5 text-5xl font-bold text-white">Chọn món ăn và đồ uống bạn yêu thích</h1>
                     <div className="form-control flex flex-row">
                     </div>
                 </div>
@@ -100,24 +101,20 @@ const Anket = () => {
                                 <div
                                     key={id}
                                     style={{
-                                        borderColor: 'black',
                                         borderWidth: 1,
                                         padding: 5,
-                                        borderRadius: 10,
-                                        borderStyle: 'solid',
+                                        borderRadius: 10, 
                                         flexShrink: 0,
                                         cursor: 'pointer',
-                                        backgroundColor: isClicked ? 'grey' : isHovered ? 'grey' : 'transparent',
-                                        color: isClicked || isHovered ? 'white' : 'black',
+                                        backgroundColor: isClicked ? '#FF3A44' : isHovered ? '#dddddd' : 'transparent',
+                                        color: isClicked  ? 'white' : 'black',
                                         transition: 'background-color 0.3s, color 0.3s'
                                     }}
                                     onClick={() => handleClick(id)}
                                     onMouseEnter={() => setHoveredIndexFood(id)}
                                     onMouseLeave={() => setHoveredIndexFood(null)}
                                 >
-                            <span style={{
-                                color: hoveredIndexFood === id ? 'white' : 'black'
-                            }}>{name}</span>
+                            <span >{name}</span>
                                 </div>
                             )
                         }
@@ -143,25 +140,21 @@ const Anket = () => {
                         return (
                             <div
                                 key={id}
-                                style={{
-                                    borderColor: 'black',
+                                style={{                           
                                     borderWidth: 1,
                                     padding: 5,
-                                    borderRadius: 10,
-                                    borderStyle: 'solid',
+                                    borderRadius: 10, 
                                     flexShrink: 0,
                                     cursor: 'pointer',
-                                    backgroundColor: isClicked ? 'grey' : isHovered ? 'grey' : 'transparent',
-                                    color: isClicked || isHovered ? 'white' : 'black',
+                                    backgroundColor: isClicked ? '#FF3A44' : isHovered ? '#dddddd' : 'transparent',
+                                    color: isClicked  ? 'white' : 'black',
                                     transition: 'background-color 0.3s, color 0.3s'
                                 }}
                                 onClick={() => handleClickDrink(id)}
                                 onMouseEnter={() => setHoveredIndexDrink(id)}
                                 onMouseLeave={() => setHoveredIndexDrink(null)}
                             >
-                            <span style={{
-                                color: hoveredIndexDrink === id ? 'white' : 'black'
-                            }}>{name}</span>
+                            <span >{name}</span>
                             </div>
                         )
                     })}
@@ -170,10 +163,12 @@ const Anket = () => {
         </div>
 
         <div style={{marginTop: 50, justifyContent: 'right', display: 'flex', marginRight: 40}}>
-            <button style={{backgroundColor: '#FF3A44'}} className="btn w-3/12" onClick={() => {
+            <button style={{backgroundColor: '#FF3A44', border: 'none'}} className="btn w-3/12 mb-4 text-white" onClick={() => {
                 submit()
             }}>
-                Hoàn thành
+                <Link to={`/`} className='badge text-white' style={{backgroundColor: '#FF3A44', border: 'none'}}>
+                    Hoàn thành
+                </Link>
             </button>
         </div>
     </div>);
