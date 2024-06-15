@@ -14,6 +14,8 @@ import User from "../../layout/User";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Anket from "../../components/Pages/Anket/Anket/Anket";
 
+const baseUrl = process.env.REACT_APP_BACKEND_URL;
+
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -21,19 +23,18 @@ const Router = createBrowserRouter([
     children: [
       {
         path: "/",
-        loader: async () =>
-          fetch("http://127.0.0.1:8000/api/eateries/all"),
+        loader: async () => fetch(`${baseUrl}/api/eateries/all`),
         element: <Home></Home>,
       },
       {
         path: "/services",
-        loader: async () => fetch("http://127.0.0.1:8000/api/eateries/all"),
+        loader: async () => fetch(`${baseUrl}/api/eateries/all`),
         element: <Services></Services>,
       },
       {
         path: "/services/:_id",
         loader: async ({ params }) =>
-          fetch(`http://127.0.0.1:8000/api/eateries/${params._id}`),
+          fetch(`${baseUrl}/api/eateries/${params._id}`),
         element: <ServiceSingle></ServiceSingle>,
       },
       {
@@ -48,10 +49,10 @@ const Router = createBrowserRouter([
         path: "/signup",
         element: <SignUp></SignUp>,
       },
-        {
-            path: '/anket',
-            element: <Anket></Anket>
-        }
+      {
+        path: "/anket",
+        element: <Anket></Anket>,
+      },
     ],
   },
   {
