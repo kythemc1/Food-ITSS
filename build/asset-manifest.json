@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Food-ITSS/static/css/main.b80fec32.css",
+    "main.js": "/Food-ITSS/static/js/main.d2bd853d.js",
+    "static/js/787.d6cc8b2e.chunk.js": "/Food-ITSS/static/js/787.d6cc8b2e.chunk.js",
+    "static/media/home-banner.png": "/Food-ITSS/static/media/home-banner.e3d0167a1f7060207094.png",
+    "static/media/register.jpg": "/Food-ITSS/static/media/register.287e0746ba3a15122073.jpg",
+    "static/media/404.jpg": "/Food-ITSS/static/media/404.857175ebcce242f08de4.jpg",
+    "static/media/u594-hero.jpg": "/Food-ITSS/static/media/u594-hero.d6cc2d8a3a169b6a29f2.jpg",
+    "static/media/blog-banner.jpg": "/Food-ITSS/static/media/blog-banner.2ad740afc79b1e9a7d8d.jpg",
+    "static/media/login.png": "/Food-ITSS/static/media/login.e171aeb8b4b3a1e315f9.png",
+    "static/media/userBanner.jpg": "/Food-ITSS/static/media/userBanner.ab387e18f2eb2032a114.jpg",
+    "static/media/food.jpg": "/Food-ITSS/static/media/food.bef24961a0248a43dde1.jpg",
+    "index.html": "/Food-ITSS/index.html",
+    "main.b80fec32.css.map": "/Food-ITSS/static/css/main.b80fec32.css.map",
+    "main.d2bd853d.js.map": "/Food-ITSS/static/js/main.d2bd853d.js.map",
+    "787.d6cc8b2e.chunk.js.map": "/Food-ITSS/static/js/787.d6cc8b2e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b80fec32.css",
+    "static/js/main.d2bd853d.js"
+  ]
+}
